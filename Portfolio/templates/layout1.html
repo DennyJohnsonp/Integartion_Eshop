@@ -4,8 +4,46 @@
 
 <head>
     <title>
-        Justin Photography
+        Photography
     </title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f173;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+            margin-left: -30px;
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 <link rel="Stylesheet" href="{% static 'layout1.css' %}">
 
@@ -20,16 +58,22 @@
                 <a href="{% url 'index' %}" style="text-decoration: none;">HOME</a>
             </h4>
             <h4 id="b">
-                <a href="{% url 'portfolio' %}" style="text-decoration: none;">PORTFOLIO</a>
+                <div class="dropdown">
+                    <a href="{% url 'portfolio' %}" style="text-decoration: none;width:50px;height:300px;margin-bottom:200px;padding-bottom:100px">PORTFOLIO</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'portfolio' %}">PHOTOGRAPHY</a>
+                        <a href="{% url 'video' %}">VIDEOGRAPHY</a>
+                    </div>
+                </div>
             </h4>
             <h4 id="c">
-                <a href="{% url 'video' %}" style="text-decoration: none;">ABOUT US</a>
+                <a href="{% url 'aboutus' %}" style="text-decoration: none;">ABOUT US</a>
             </h4>
         </ul>
     </div>
     <div>
         <ul id="logo">
-            <a href="{% url 'video' %}" style="text-decoration: none;"><img src={% static 'logo.png'%} width="430" height="430"></a>
+            <a href="{% url 'index' %}" style="text-decoration: none;"><img src={% static 'logo.png'%} width="430" height="430"></a>
         </ul>
     </div>
     <div>
@@ -38,7 +82,7 @@
                 <a href="{% url 'cart' %}" style="text-decoration: none;">STORE</a>
             </h4>
             <h4 id="e">
-                <a href="#" style="text-decoration: none;">CONTACT</a>
+                <a href="{% url 'contact' %}" style="text-decoration: none;">CONTACT</a>
             </h4>
             <h4 id="f">
                 <a href="#" style="text-decoration: none;">ACCOUNT</a>
@@ -48,5 +92,48 @@
     {% block body %} {%endblock%}
 
 </body>
+<script>
+    // Some random colors
+    const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
+
+    const numBalls = 50;
+    const balls = [];
+
+    for (let i = 0; i < numBalls; i++) {
+        let ball = document.createElement("div");
+        ball.classList.add("ball");
+        ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+        ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+        ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+        ball.style.transform = `scale(${Math.random()})`;
+        ball.style.width = `${Math.random()}em`;
+        ball.style.height = ball.style.width;
+
+        balls.push(ball);
+        document.body.append(ball);
+    }
+
+    // Keyframes
+    balls.forEach((el, i, ra) => {
+        let to = {
+            x: Math.random() * (i % 2 === 0 ? -11 : 11),
+            y: Math.random() * 12
+        };
+
+        let anim = el.animate(
+            [{
+                transform: "translate(0, 0)"
+            }, {
+                transform: `translate(${to.x}rem, ${to.y}rem)`
+            }], {
+                duration: (Math.random() + 1) * 2000, // random duration
+                direction: "alternate",
+                fill: "both",
+                iterations: Infinity,
+                easing: "ease-in-out"
+            }
+        );
+    });
+</script>
 
 </html>

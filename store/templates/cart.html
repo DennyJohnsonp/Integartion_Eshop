@@ -5,16 +5,22 @@
             <a class="text-dark" href="{% url 'index' %}" style="text-decoration: none;">HOME</a>
         </h4>
         <h4 id="b">
-            <a class="text-dark" href="{% url 'portfolio' %}" style="text-decoration: none;">PORTFOLIO</a>
+            <div class="dropdown">
+                <a href="{% url 'portfolio' %}" style="text-decoration: none;width:50px;height:300px;margin-bottom:200px;padding-bottom:100px;color:black;">PORTFOLIO</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'portfolio' %}">PHOTOGRAPHY</a>
+                    <a href="{% url 'video' %}">VIDEOGRAPHY</a>
+                </div>
+            </div>
         </h4>
         <h4 id="c">
-            <a class="text-dark" href="#" style="text-decoration: none;">ABOUT US</a>
+            <a class="text-dark" href="{% url 'aboutus' %}" style="text-decoration: none;">ABOUT US</a>
         </h4>
     </ul>
 </div>
 <div>
     <ul id="logo">
-        <a href="#" style="text-decoration: none;"><img src="{%  static  'css/Images/logo.png'  %}" width="430" height="430"></a>
+        <a href="{% url 'index' %}" style="text-decoration: none;"><img src="{%  static  'css/Images/logo.png'  %}" width="430" height="430"></a>
     </ul>
 </div>
 <div class="ml-1">
@@ -23,7 +29,7 @@
             <a class="text-dark" href="{% url 'cart' %}" style="text-decoration: none;">STORE</a>
         </h4>
         <h4 id="e">
-            <a class="text-dark" href="#" style="text-decoration: none;">CONTACT</a>
+            <a class="text-dark" href="{% url 'contact' %}" style="text-decoration: none;">CONTACT</a>
         </h4>
         <h4 id="f">
             <a class="text-dark" href="#" style="text-decoration: none;">ACCOUNT</a>
